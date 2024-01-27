@@ -167,51 +167,62 @@ Node* deleteFromBst(Node* root , int val){
     return root;
 }
 
+void takeInput(Node* &root){
+    int data ; 
+    cin>>data ;
+
+    while( data != -1){
+        root = insertNode(root , data) ; 
+        cin>>data ; 
+    }
+}
+
 
 int main(){
 
-    Node* root = NULL ; 
-    root = insertNode(root , 10);
-    insertNode(root , 20);
-    insertNode(root , 7);
-    insertNode(root , 25);
-    insertNode(root , 22);
-    insertNode(root , 9);
-    insertNode(root , 8);
-    insertNode(root , 5);
-    insertNode(root , 6);
-    insertNode(root , 3);
+    Node *root = NULL ; 
+
+    int n ; 
+
+    while(1){
+        cout<<"Press\n1:for insertion Node\n2:for preorder traversing\n3:for inorder traversing\n4:for postorder traversing\n5:for searching\n6:for deletion node"<<endl;
+        cin>>n ;
+
+        switch(n){
+
+            case 1:
+                cout<<"Enter the data to create BST:"<<endl;
+                takeInput(root) ; 
+                break; 
+            case 2:
+                preOrder(root) ; 
+                break; 
+            case 3:
+                inOrder(root) ;
+                break; 
+            case 4:
+                postOrder(root) ; 
+                break;
+            case 5:
+                int val; 
+                cout<<"Enter the value to be search:";
+                cin>>val; 
+                searchingNode(root , val);
+                break;
+            case 6:
+                int dat ; 
+                cout<<"Enter the value to deleted:";
+                cin>>dat; 
+                deleteFromBst(root , dat) ; 
+                break;
+            
+            default:
+                cout<<"Wrong choice !! Please try again.";
+                break;
+        }
+    }
 
 
-    cout<<"pre Order"<<endl;
-    preOrder(root);
-    cout<<"in Order"<<endl;
-    inOrder(root);
-    cout<<"post order"<<endl;
-    postOrder(root);
-
-    cout<<"Searching node 20 "<<endl;
-    searchingNode(root , 20);
-
-    
-    cout<<"Searching node 15 "<<endl;
-    searchingNode(root , 15);
-
-    //checking 
-    cout<<"checking present or not ";
-    cout<<checkPresentOrNot(root , 50)<<endl;
-    cout<<checkPresentOrNot(root , 20);
-    cout<<endl;
-    cout<<"minValue is:";
-    cout<<minValue(root)<<endl;
-    cout<<"maxValue is:";
-    cout<<maxValue(root)<<endl;
-
-
-    // deletion 
-    root = deleteFromBst(root , 7);
-    
-    inOrder(root);
-
+  
     return 0 ; 
 }
