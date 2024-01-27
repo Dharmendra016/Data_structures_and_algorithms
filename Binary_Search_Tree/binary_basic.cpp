@@ -63,22 +63,47 @@ void postOrder(Node* root){
     cout<<root->data <<endl; 
 }
 
-
+// best case tc = O(logn) || worse case tc = O(n);
 void searchingNode(Node* root , int dat){
 
     if( dat == root->data){
         cout<<"founded"<<endl;
         return;
-    }else{
-        cout<<"Not founded"<<endl;
+    }
+
+    if( root == NULL ){
+        cout<<"not founded"<<endl;
         return;
     }
+        
+    
 
     if( dat > root->data){
         searchingNode(root->right , dat) ; 
     }else if(dat < root->data){
         searchingNode(root->left , dat);
     }
+
+    
+}
+
+//iterative method ( optimized solution )
+bool checkPresentOrNot(Node* root ,  int x){
+
+    while( root != NULL ){
+        if( root->data ==  x){
+            return true ; 
+        }
+
+        if( root->data < x){
+            root = root -> right ; 
+        }
+        else{
+            root = root -> left; 
+        }
+
+    }
+    return false;
 }
 
 
@@ -100,7 +125,13 @@ int main(){
     searchingNode(root , 20);
 
     
-    cout<<"Searching node 02 "<<endl;
-    searchingNode(root , 02);
+    cout<<"Searching node 15 "<<endl;
+    searchingNode(root , 15);
+
+    //checking 
+    cout<<"checking present or not ";
+    cout<<checkPresentOrNot(root , 50)<<endl;
+    cout<<checkPresentOrNot(root , 20);
+
     return 0 ; 
 }
